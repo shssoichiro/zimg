@@ -6,7 +6,6 @@
 #include "common/zassert.h"
 #include "gamma.h"
 #include "operation_impl.h"
-#include <csignal>
 #include <iostream>
 
 namespace zimg {
@@ -45,7 +44,6 @@ create_ncl_yuv_to_rgb_operation(const ColorspaceDefinition &in,
   fprintf(stderr, "%.6f %.6f %.6f\n", m[0][0], m[0][1], m[0][2]);
   fprintf(stderr, "%.6f %.6f %.6f\n", m[1][0], m[1][1], m[1][2]);
   fprintf(stderr, "%.6f %.6f %.6f\n", m[2][0], m[2][1], m[2][2]);
-  std::raise(SIGINT);
   return create_matrix_operation(m, cpu);
 }
 
