@@ -356,7 +356,7 @@ create_cl_yuv_to_rgb_operation(const ColorspaceDefinition &in,
                 out.transfer == TransferCharacteristics::LINEAR,
             "must be linear RGB");
 
-  std::cerr << "Using CL YUV to RGB" << '\n';
+  fprintf(stderr, "Using CL YUV to RGB\n");
 
   // CL is always scene-referred.
   TransferFunction func =
@@ -364,9 +364,10 @@ create_cl_yuv_to_rgb_operation(const ColorspaceDefinition &in,
   Matrix3x3 m = in.matrix == MatrixCoefficients::CHROMATICITY_DERIVED_CL
                     ? ncl_rgb_to_yuv_matrix_from_primaries(in.primaries)
                     : ncl_rgb_to_yuv_matrix(in.matrix);
-  std::cerr << m[0][0] << " " << m[0][1] << " " << m[0][2] << '\n';
-  std::cerr << m[1][0] << " " << m[1][1] << " " << m[1][2] << '\n';
-  std::cerr << m[2][0] << " " << m[2][1] << " " << m[2][2] << '\n';
+  fprintf(stderr, "%.6f %.6f %.6f\n", m[0][0], m[0][1], m[0][2]);
+  fprintf(stderr, "%.6f %.6f %.6f\n", m[1][0], m[1][1], m[1][2]);
+  fprintf(stderr, "%.6f %.6f %.6f\n", m[2][0], m[2][1], m[2][2]);
+
   return std::make_unique<CLToRGBOperationC>(func.to_gamma, func.to_linear,
                                              m[0][0], m[0][1], m[0][2],
                                              func.to_linear_scale);
