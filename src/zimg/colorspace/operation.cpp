@@ -35,14 +35,14 @@ create_ncl_yuv_to_rgb_operation(const ColorspaceDefinition &in,
   zassert_d(in.matrix != MatrixCoefficients::REC_2020_CL,
             "wrong matrix coefficients");
 
-  std::cerr << "Using NCL YUV to RGB" << '\n';
+  std::cout << "Using NCL YUV to RGB" << '\n';
 
   Matrix3x3 m = in.matrix == MatrixCoefficients::CHROMATICITY_DERIVED_NCL
                     ? ncl_yuv_to_rgb_matrix_from_primaries(in.primaries)
                     : ncl_yuv_to_rgb_matrix(in.matrix);
-  std::cerr << m[0][0] << " " << m[0][1] << " " << m[0][2] << '\n';
-  std::cerr << m[1][0] << " " << m[1][1] << " " << m[1][2] << '\n';
-  std::cerr << m[2][0] << " " << m[2][1] << " " << m[2][2] << '\n';
+  std::cout << m[0][0] << " " << m[0][1] << " " << m[0][2] << '\n';
+  std::cout << m[1][0] << " " << m[1][1] << " " << m[1][2] << '\n';
+  std::cout << m[2][0] << " " << m[2][1] << " " << m[2][2] << '\n';
   return create_matrix_operation(m, cpu);
 }
 

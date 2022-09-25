@@ -232,7 +232,7 @@ get_operation_path(const ColorspaceDefinition &in,
 
   ColorspaceDefinition vertex{};
 
-  std::cerr << "Stderr printing works\n";
+  std::cout << "Stderr printing works\n";
 
   visited.insert(in);
   queue.push_back(in);
