@@ -4,6 +4,7 @@
 #include "common/zassert.h"
 #include "operation.h"
 #include <algorithm>
+#include <csignal>
 #include <deque>
 #include <iostream>
 #include <type_traits>
@@ -234,6 +235,7 @@ get_operation_path(const ColorspaceDefinition &in,
 
   visited.insert(in);
   queue.push_back(in);
+  std::raise(SIGINT);
 
   while (!queue.empty()) {
     vertex = queue.front();
